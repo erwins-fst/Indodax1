@@ -3,7 +3,9 @@
 Modul ini untuk trading di indodax. Update u mengakses data dengan coin usdt.
 Untuk menginstall download **dist/indodax-1.3.1-py3-none-any.whl**
 Kemudian buka shell: 
+```sh
 $ pip install indodax-1.3.1-py3-none-any.whl
+```
 
 # Install
 ```sh

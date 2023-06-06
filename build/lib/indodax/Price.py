@@ -7,7 +7,7 @@ class price:
     while True:
         try:
             #m = coin+'idr'
-            url = 'https://indodax.com/api/ticker/'#+m
+            url = 'https://indodax.com/api/ticker/'+coin #+m
             r = rq.get(url)
             return r.json()
 

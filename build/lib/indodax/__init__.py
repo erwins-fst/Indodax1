@@ -3,7 +3,7 @@ import requests as c
 from hmac import HMAC
 from indodax.Price import price
 
-__version__ = 1.3
+__version__ = '1.3.1'
 
 class indodax:
   '''Ini dirancang agar mempermudah jual beli mata uang digital di indodax ambil key dan secret di akun anda
@@ -28,7 +28,7 @@ class indodax:
     kwargs['method'] = method
     kwargs['nonce'] = int(time.time()*1000000)
 
-    sign = HMAC(self.secret.encode('utf-8'), urllib.parse.urlencode(kwargs).encode('utf-8'), 'sha512').hexdigest()
+    sign = HMAC(self.secret, urllib.parse.urlencode(kwargs).encode('utf-8'), 'sha512').hexdigest()
     headers = {
       'Sign': sign,
       'Key': self.key
@@ -36,11 +36,17 @@ class indodax:
 
     s = c.Session()
     r = s.post(url, headers=headers, data=kwargs)
-    js = json.dumps(json.loads(r.text))
+    js = json.dumps(json.loads(r.text), sort_keys=False, indent=4)
     return js
 
   @staticmethod
   def get_price(coin):
+    coin1 = coin+'idr'
+    a = price.price(coin1)
+    return a
+
+
+  def get_priceAll(coin):
     a = price.price(coin)
     return a
 
@@ -118,10 +124,10 @@ class indodax:
       buy = jk['buy']
       sell = jk['sell']
       if type == 'buy':
-          return self.trade_buy(coin, buy, jumlah)
+          return self.trade_buy(coin, sell, jumlah)
 
       if type == 'sell':
-          return self.trade_sell(coin, sell, jumlah)
+          return self.trade_sell(coin, buy, jumlah)
 
   def cancel_order_buy(self, coin, order_id, idr_or_btc='idr'):
     pair = coin+'_'+idr_or_btc

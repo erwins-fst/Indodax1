@@ -41,6 +41,12 @@ class indodax:
 
   @staticmethod
   def get_price(coin):
+    coin1 = coin+'idr'
+    a = price.price(coin1)
+    return a
+
+
+  def get_priceAll(coin):
     a = price.price(coin)
     return a
 

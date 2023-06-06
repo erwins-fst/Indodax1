@@ -1,6 +1,9 @@
 # Indodax
 [PyPI version 1.3](https://pypi.org/project/indodax/1.3/)
-Modul ini untuk trading di indodax
+Modul ini untuk trading di indodax. Update u mengakses data dengan coin usdt.
+Untuk menginstall download **dist/indodax-1.3.1-py3-none-any.whl**
+Kemudian buka shell: 
+$ pip install indodax-1.3.1-py3-none-any.whl
 
 # Install
 ```sh
